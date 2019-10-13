@@ -1,0 +1,23 @@
+'''
+Have the function LongestWord(sen) take the sen parameter being passed and return the largest word in the string. 
+If there are two or more words that are the same length, return the first word from the string with that length. 
+Ignore punctuation and assume sen will not be empty.
+'''
+
+def LongestWord(sen):
+    biggestWord = ''
+    sen = sen.split()
+    newList = []
+    for word in sen:
+        newWord = ''
+        for letter in word:
+            if letter.isalpha() or letter.isdigit():
+                newWord = newWord + letter
+        newList.append(newWord)
+    for word in newList:
+        if len(word) > len(biggestWord):
+            biggestWord = word
+    
+    sen = biggestWord
+
+    return sen
