@@ -1,0 +1,33 @@
+'''
+Have the function LetterCountI(str) take the str parameter being passed and return the first word with the greatest number of repeated letters. 
+For example: "Today, is the greatest day ever!" should return greatest because it has 2 e's (and 2 t's) and it comes before ever which also has 2 e's. 
+If there are no words with repeating letters return -1. Words will be separated by spaces.
+'''
+
+def LetterCountI(str):
+    wordArr = str.split()
+    dictArr = []
+    
+    for i in range(len(wordArr)): #for every word in the word array, create its corresponding dictionary array
+        dictArr.append({'a': 0, 'c': 0, 'b': 0, 'e': 0, 'd': 0, 'g': 0, 'f': 0, 'i': 0, 'h': 0, 'k': 0,
+                        'j': 0, 'm': 0, 'l': 0, 'o': 0, 'n': 0, 'q': 0, 'p': 0, 's': 0, 'r': 0, 'u': 0, 
+                        't': 0, 'w': 0, 'v': 0, 'y': 0, 'x': 0, 'z': 0})
+        
+    for i in range(len(wordArr)): #loop through word array
+        for letter in wordArr[i]: #loop through each letter of each word in the word array
+            letter = letter.lower()
+            dictArr[i][letter] += 1  #index the dictionary corresponding to each word and count the letter instances
+    
+    
+    initMaxValue = 1 #any dictionary's max value should always be one
+      
+    for i in range(len(dictArr)): #loop through each dictionary, find the dict with max value, append it to a new array, return last entry
+        newMaxValue = max(list(dictArr[i].values())) #return the maximum value of dictionary at index 
+        if newMaxValue > initMaxValue: #greater than is important - it filters out any subsequent word that may have equal amount of same letter
+            initMaxValue = newMaxValue  #new Max becomes the initialMax for comparison in next iteration
+            maxLetterWord = wordArr[i]
+            
+            
+        if i == (len(dictArr) - 1) and initMaxValue == 1: #if we reach end of arr and initMax is still 1, 
+                                                            #then no word with more than 1 letter
+            return -1
