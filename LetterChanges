@@ -1,0 +1,31 @@
+'''
+Have the function LetterChanges(str) take the str parameter being passed and modify it using the following algorithm. 
+Replace every letter in the string with the letter following it in the alphabet (ie. c becomes d, z becomes a). 
+Then capitalize every vowel in this new string (a, e, i, o, u) and finally return this modified string.
+'''
+
+def LetterChanges(string):
+    newString = ''
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i','j', 'k', 'l', 'm', 'n', 'o', 'p',
+                'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    vowels = ['a','e','i','o','u']
+    tempChar = ''
+    
+    for character in string:
+        if character.isalpha():
+            for i in range(len(alphabet)):
+                if character == alphabet[i] and i == (len(alphabet) - 1):
+                    tempChar = alphabet[0].capitalize()
+                    newString = newString + tempChar
+                elif character == alphabet[i]:
+                    tempChar = alphabet[i+1]
+                    if tempChar in vowels:
+                        tempChar = tempChar.capitalize()
+                    newString = newString + tempChar
+        else:
+            newString = newString + character
+            
+    
+    string = newString
+    
+    return string
