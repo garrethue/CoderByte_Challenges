@@ -1,0 +1,26 @@
+'''
+Created on Aug 26, 2019
+
+Have the function ABCheck(str) take the str parameter being passed and return the string 
+true if the characters a and b are separated by exactly 3 places anywhere in the string at least once (ie. "lane borrowed" 
+would result in true because there is exactly three characters between a and b). Otherwise return the string false.
+
+@author: garret.larson
+'''
+def ABCheck(string):
+    string = string.lower()
+    stringList = list(string) 
+    
+    for i in range(len(stringList)):
+        if stringList[i] == 'a' and i < (len(stringList) - 4):
+            if stringList[i+4] == 'b':
+                return True
+    
+    for i in range(len(stringList)):
+        print(stringList[i], i)
+        if stringList[i] == 'a' and i > 3:
+            print(stringList[i-4])
+            if stringList[i-4] == 'b':
+                return True
+            
+    return False
