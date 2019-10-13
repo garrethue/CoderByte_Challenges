@@ -1,0 +1,32 @@
+'''
+Have the function AlphabetSoup(str) take the str string parameter being passed and 
+return the string with the letters in alphabetical order (ie. hello becomes ehllo). 
+Assume numbers and punctuation symbols will not be included in the string.
+'''
+
+def convertListToString(list):
+  newString = ''
+  for char in list:
+    newString += char
+  
+  return newString
+    
+def AlphabetSoup(str):
+  switched = False
+  str = list(str)
+  
+  for i in range(len(str)):
+    if (i+1) == len(str):
+      if not switched:
+        str = convertListToString(str)
+        return str
+    elif str[i] > str[i+1]:
+      tempStr = str[i]
+      str[i] = str[i+1]
+      str[i+1] = tempStr
+      switched = True
+  
+  if switched:
+    str = AlphabetSoup(str)
+    
+  return str
